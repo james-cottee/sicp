@@ -1,0 +1,16 @@
+#lang racket
+(define (count-leaves t)
+  (accumulate (lambda (x y) (+ y 1)) 0 (flatten t) ))
+(define (accumulate op initial sequence)
+  (cond ((null? sequence) initial)
+        (else (op (car sequence)
+                  (accumulate op initial (cdr sequence))))))
+(define (flatten l)
+  (cond ((null? l) null)
+        ((not (pair? (car l))) (cons (car l) (flatten (cdr l))))
+        (else (append (flatten (car l)) (flatten (cdr l))))))
+;;need to replace flatten with map
+                               
+                               
+                               
+                              

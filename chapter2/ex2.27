@@ -1,0 +1,6 @@
+#lang racket
+(define (deep-reverse l)
+  (cond ((null? l) '())
+        ((not (pair? (car l))) (append (deep-reverse (cdr l)) (list (car l))))
+        ((not (null? (cdr l))) (list (deep-reverse (cdr l)) (deep-reverse (car l))))
+        (else (deep-reverse (car l)))))

@@ -1,0 +1,17 @@
+#lang racket
+(require "accumulate.rkt")
+(require "ex2.36.rkt")
+(define (dot-product v w)
+  (accumulate + 0 (map * v w)))
+(define (matrix-*-vector m v)
+  (map (lambda (x) (dot-product x v)) m))
+(define mat '((2 0 0) (0 3 0) (0 0 4)))
+(define vec '( 1 2 3))
+(define (transpose mat)
+  (accumulate-n cons '() mat))
+(define (matrix-*-matrix m n)
+  (let ((cols (transpose n)))
+    (map (lambda (row) (matrix-*-vector cols row)) m)))
+(define m1 '((1 2) (3 4)))
+(define m2 '((2 1) (4 5)))
+;; a bit mind-blowing !!

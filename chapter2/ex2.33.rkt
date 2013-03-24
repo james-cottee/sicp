@@ -1,0 +1,11 @@
+#lang racket
+(define (jmap p sequence)
+  (accumulate (lambda (x y) (cons (p x) y)) null sequence))
+(define (jappend seq1 seq2)
+  (accumulate cons  seq2 seq1))
+(define (jlength sequence)
+  (accumulate (lambda (x y) (+ y 1)) 0 sequence))
+(define (accumulate op initial sequence)
+  (cond ((null? sequence) initial)
+        (else (op (car sequence)
+                  (accumulate op initial (cdr sequence))))))

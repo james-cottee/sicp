@@ -1,0 +1,6 @@
+#lang racket
+(require "ex2.38.rkt")
+(define (reverse sequence)
+  (fold-right (lambda (x y) <??>) nil sequence))
+(define (reverse sequence)
+  (fold-left (lambda (x y) <??>) nil sequence))
